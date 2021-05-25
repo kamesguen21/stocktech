@@ -1,0 +1,183 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomepageController!{% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('stockpage') }}
+    {% endblock %}
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    {% if stock %}
+        <input type="hidden" id="homepage_urls" data-now="{{ url('market_now') }}">
+        <input type="hidden" id="sync">
+        <input type="hidden" id="stock_tickers" data-tickers='{{ tickers }}'>
+        <main>
+            <section id="ticker" class="dist_ticker__azseO">
+            </section>
+            <div class="row grad mt-3">
+                <div class="col-2 ml-4 mt-4">
+                    <div class="dis-flew">
+                        <h4 class="text-white">{{ stock.description.name }}   <small class="text-muted">({{ stock.symbol }})</small></h4>
+                    </div>
+                </div>
+                <div class="col-6 ml-4 mt-4">
+                    <div class="float-right  text-right-x" id="stock_val">
+                    </div>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-black-50">Chart</h3>
+                    </div>
+                    <div class="col">
+                        <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-outline-primary" id="max">max</button>
+                                <button type="button" class="btn btn-outline-primary" id="5Y">5Y</button>
+                                <button type="button" class="btn btn-outline-primary" id="1Y">1Y</button>
+                                <button type="button" class="btn btn-outline-primary" id="6M">6M</button>
+                                <button type="button" class="btn btn-outline-primary" id="1M">1M</button>
+                                <button type="button" class="btn btn-outline-primary" id="7D">7D</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col">
+                        <canvas id="myChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col">
+                        <h3 class="text-black-50">Table</h3>
+                    </div>
+                    <div class="col float-right">
+                        {% if stock and stock.tickers and stock.tickers|length> 0 %}
+                            {{ include('util/paginator.html.twig', {'index':'market_stocks_page'}) }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-12">
+                        <table class="table table-dark table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Open</th>
+                                <th>High</th>
+                                <th>Low</th>
+                                <th>Close</th>
+                                <th>Adj close</th>
+                                <th>Volume</th>
+                            </tr>
+                            </thead>
+                            <tbody id="stocks_table">
+                            <tr class="text-center">
+                                <td colspan="7">Fetching Data...</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <h3 class="text-black-50">Description</h3>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="card-deck">
+                            <div class="card  mb-4">
+                                <img class="card-img" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" width="400" src="{{ stock.description.logo }}" data-holder-rendered="true">
+                            </div>
+                            <div class="card mb-4 shadow-sm ">
+                                <div class="card-body">
+                                    <strong class="d-inline-block mb-2 text-primary">{{ stock.description.symbol }}</strong>
+                                    <h3 class="mb-0">
+                                        <a class="text-dark" href="#">{{ stock.description.name }}</a>
+                                    </h3>
+                                    <div class="mb-1 text-muted">{{ stock.description.listdate }}</div>
+                                    <p class="card-text mb-auto">{{ stock.description.description }}</p>
+                                    <div class="mb-1 text-muted">Tags</div>
+                                    <div>
+                                        {% set tags =  stock.description.tags|split(',') %}
+                                        {% for tag in tags %}
+                                            <span class="text-monospace"> {{ tag }}, </span>
+                                        {% endfor %}
+                                    </div>
+                                    <a href="{{ stock.description.url }}">visit website</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col">
+                        <div class="card-deck">
+                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <div class="mb-1 text-muted">Country</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.country }}</span>
+                                    <div class="mb-1 text-muted">State</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.hqState }}</span>
+                                    <div class="mb-1 text-muted">Address</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.hqAddress }}</span>
+                                    <div class="mb-1 text-muted">Phone</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.phone }}</span>
+                                </div>
+                            </div>
+                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <div class="mb-1 text-muted">Ceo</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.ceo }}</span>
+                                    <div class="mb-1 text-muted">Employees</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.employees }}</span>
+                                    <div class="mb-1 text-muted">marketcap</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.marketcap|number_format(0, '.', ',') }}</span>
+                                    <div class="mb-1 text-muted">Similar</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.similar }}</span>
+                                </div>
+                            </div>
+                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <div class="mb-1 text-muted">Sector</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.sector }}</span>
+                                    <div class="mb-1 text-muted">Industry</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.industry }}</span>
+                                    <div class="mb-1 text-muted">Sic</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.sic}}</span>
+                                    <div class="mb-1 text-muted">Exchange</div>
+                                    <span  class="card-text mb-auto">{{ stock.description.exchange }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    {% else %}
+        <div class="container" style="margin-bottom: 100%">
+            <div class="row text-center text-monospace">
+                <div class="col">
+                    <h1>Stock not found</h1>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

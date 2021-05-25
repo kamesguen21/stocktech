@@ -1,0 +1,103 @@
+{% block javascripts %}
+    {{ encore_entry_script_tags('ticker') }}
+{% endblock %}
+<div class="text-center container ">
+    {{ form_start(form) }}
+    {% for error in form.vars.errors %}
+        <div class="alert alert-danger">{{ error.message }} </div>
+    {% endfor %}
+    <div class="form-group row">
+        <label for="ticker_stock" class="col-sm-2 col-form-label">Stock</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.stock) }}
+            {% for error in form.stock.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label for="ticker_date" class="col-sm-2 col-form-label">date</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.date) }}
+            {% for error in form.date.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <label for="ticker_open" class="col-sm-2 col-form-label">open</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.open) }}
+            {% for error in form.open.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <label for="ticker_hight" class="col-sm-2 col-form-label">high</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.hight) }}
+            {% for error in form.hight.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <label for="ticker_low" class="col-sm-2 col-form-label">low</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.low) }}
+            {% for error in form.low.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <label for="ticker_close" class="col-sm-2 col-form-label">close</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.close) }}
+            {% for error in form.close.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <label for="ticker_adj_close" class="col-sm-2 col-form-label">adj_close</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.adj_close) }}
+            {% for error in form.adj_close.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <label for="ticker_volume" class="col-sm-2 col-form-label">volume</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.volume) }}
+            {% for error in form.volume.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="form-group row" style="display:none;">
+        <label for="ticker_symbol" class="col-sm-2 col-form-label">symbol</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.symbol) }}
+            {% for error in form.symbol.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <button class="btn btn-primary btn-lg">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+</div>

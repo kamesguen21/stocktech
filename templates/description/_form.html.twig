@@ -1,0 +1,250 @@
+{% block javascripts %}
+    {{ encore_entry_script_tags('description') }}
+{% endblock %}
+<div class="text-center container ">
+    {{ form_start(form) }}
+    {% for error in form.vars.errors %}
+        <div class="alert alert-danger">{{ error.message }} </div>
+    {% endfor %}
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_logo">logo</label>
+            {{ form_widget(form.logo) }}
+            {% for error in form.logo.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_listdate">listdate</label>
+            {{ form_widget(form.listdate) }}
+            {% for error in form.listdate.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_cik">cik</label>
+            {{ form_widget(form.cik) }}
+            {% for error in form.cik.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_bloomberg">bloomberg</label>
+            {{ form_widget(form.bloomberg) }}
+            {% for error in form.bloomberg.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_figi">figi</label>
+            {{ form_widget(form.figi) }}
+            {% for error in form.figi.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_lei">lei</label>
+            {{ form_widget(form.lei) }}
+            {% for error in form.lei.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_sic">sic</label>
+            {{ form_widget(form.sic) }}
+            {% for error in form.sic.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_country">country</label>
+            {{ form_widget(form.country) }}
+            {% for error in form.country.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_industry">industry</label>
+            {{ form_widget(form.industry) }}
+            {% for error in form.industry.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_sector">sector</label>
+            {{ form_widget(form.sector) }}
+            {% for error in form.sector.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_marketcap">marketcap</label>
+            {{ form_widget(form.marketcap) }}
+            {% for error in form.marketcap.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_employees">employees</label>
+            {{ form_widget(form.employees) }}
+            {% for error in form.employees.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_phone">phone</label>
+            {{ form_widget(form.phone) }}
+            {% for error in form.phone.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_ceo">ceo</label>
+            {{ form_widget(form.ceo) }}
+            {% for error in form.ceo.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_url">url</label>
+            {{ form_widget(form.url) }}
+            {% for error in form.url.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+            <div class="form-group col-6">
+                <label for="description_exchangeSymbol">exchangeSymbol</label>
+                {{ form_widget(form.exchangeSymbol) }}
+                {% for error in form.exchangeSymbol.vars.errors %}
+                    <div class="alert alert-danger">{{ error.message }} </div>
+                {% endfor %}
+            </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-12">
+        <label for="description_description">description</label>
+        {{ form_widget(form.description) }}
+        {% for error in form.description.vars.errors %}
+            <div class="alert alert-danger">{{ error.message }} </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_exchange">exchange</label>
+            {{ form_widget(form.exchange) }}
+            {% for error in form.exchange.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_name">name</label>
+            {{ form_widget(form.name) }}
+            {% for error in form.name.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="form-group col-6" style="display: none">
+        <label for="description_symbol">symbol</label>
+        {{ form_widget(form.symbol) }}
+        {% for error in form.symbol.vars.errors %}
+            <div class="alert alert-danger">{{ error.message }} </div>
+        {% endfor %}
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_hq_address">hq_address</label>
+            {{ form_widget(form.hq_address) }}
+            {% for error in form.hq_address.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_hq_state">hq_state</label>
+            {{ form_widget(form.hq_state) }}
+            {% for error in form.hq_state.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_hq_country">hq_country</label>
+            {{ form_widget(form.hq_country) }}
+            {% for error in form.hq_country.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_type">type</label>
+            {{ form_widget(form.type) }}
+            {% for error in form.type.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_updated">updated</label>
+            {{ form_widget(form.updated) }}
+            {% for error in form.updated.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="form-group col-6">
+            <label for="description_tags">tags</label>
+            {{ form_widget(form.tags) }}
+            {% for error in form.tags.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_similar">similar</label>
+            {{ form_widget(form.similar) }}
+            {% for error in form.similar.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+        <div class="custom-control custom-checkbox col-6">
+            {{ form_widget(form.active) }}
+             <label for="description_active" class="custom-control-label">active</label>
+
+            {% for error in form.active.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label for="description_stock">stock</label>
+            {{ form_widget(form.stock) }}
+            {% for error in form.stock.vars.errors %}
+                <div class="alert alert-danger">{{ error.message }} </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12">
+            <button class="btn btn-primary btn-lg">{{ button_label|default('Save') }}</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

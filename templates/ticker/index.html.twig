@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticker index{% endblock %}
+  {% block javascripts %}
+      {{ encore_entry_script_tags('ticker') }}
+
+  {% endblock %}
+
+{% block body %}
+    <input type="hidden" id="urls" data-index="{{ url('ticker_index') }}">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Tickers</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <a href="{{ path('ticker_new') }}" class="btn btn-big btn-primary">Create</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="{{ url('ticker_search') }}" method="POST">
+                <div class="input-group mb-3">
+
+                    <input type="hidden" name="_token" value="{{ csrf_token('') }}"/>
+                    <input type="text" class="form-control" name="symbol" value="{{ symbol }}" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                        {% if symbol !='' %}
+                            <button class="btn btn-outline-danger " id='cancel_search' type="reset">Cancel</button>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            {% if pages and pages > 0 %}
+                {{ include('util/paginator.html.twig', {'index':'ticker_index'}) }}
+            {% endif %}
+        </div>
+
+
+    </div>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Open</th>
+                <th>Hight</th>
+                <th>Low</th>
+                <th>Close</th>
+                <th>Adj_close</th>
+                <th>Volume</th>
+                <th>Symbol</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticker in tickers %}
+            <tr>
+                <td>{{ ticker.id }}</td>
+                <td>{{ ticker.date ? ticker.date|date('Y-m-d') : '' }}</td>
+                <td>{{ ticker.open }}</td>
+                <td>{{ ticker.hight }}</td>
+                <td>{{ ticker.low }}</td>
+                <td>{{ ticker.close }}</td>
+                <td>{{ ticker.adjClose }}</td>
+                <td>{{ ticker.volume }}</td>
+                <td>{{ ticker.symbol }}</td>
+                <td>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <a type="button" class="btn btn-big btn-info edit_btn"  href="{{ path('ticker_edit', {'id': ticker.id}) }}">Edit</a>
+                            <button class="btn btn-sm btn-danger delete_btn" data-toggle="modal"  data-url="{{ url('ticker_delete', {'id': ticker.id}) }}" data-target="#delete_Item">Delete</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr class="text-center">
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <div class="modal fade" id="delete_Item" tabindex="-1" role="dialog" aria-labelledby="delete_Item" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="deleteItemForm" action="" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete_Item">Delete Ticker</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" name="_token" value="{{ csrf_token('') }}"/>
+                            <h5>Are you sure you want to delete this Ticker?</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="delete_item_submit" class="btn btn-danger" >Save changes</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

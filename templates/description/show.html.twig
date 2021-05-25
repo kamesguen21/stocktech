@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Description{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1>Description</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2 btn-group-lg" >
+                <a href="{{ path('description_index') }}" type="button" class="btn btn-sm btn-outline-info btn-lg">Back</a>
+                <a href="{{ path('description_edit', {'id': description.id}) }}" type="button" class="btn btn-sm btn-outline-secondary btn-lg">Edit</a>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ description.id }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ description.logo }}</td>
+            </tr>
+            <tr>
+                <th>Listdate</th>
+                <td>{{ description.listdate }}</td>
+            </tr>
+            <tr>
+                <th>Cik</th>
+                <td>{{ description.cik }}</td>
+            </tr>
+            <tr>
+                <th>Bloomberg</th>
+                <td>{{ description.bloomberg }}</td>
+            </tr>
+            <tr>
+                <th>Figi</th>
+                <td>{{ description.figi }}</td>
+            </tr>
+            <tr>
+                <th>Lei</th>
+                <td>{{ description.lei }}</td>
+            </tr>
+            <tr>
+                <th>Sic</th>
+                <td>{{ description.sic }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ description.country }}</td>
+            </tr>
+            <tr>
+                <th>Industry</th>
+                <td>{{ description.industry }}</td>
+            </tr>
+            <tr>
+                <th>Sector</th>
+                <td>{{ description.sector }}</td>
+            </tr>
+            <tr>
+                <th>Marketcap</th>
+                <td>{{ description.marketcap }}</td>
+            </tr>
+            <tr>
+                <th>Employees</th>
+                <td>{{ description.employees }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ description.phone }}</td>
+            </tr>
+            <tr>
+                <th>Ceo</th>
+                <td>{{ description.ceo }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ description.url }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ description.description }}</td>
+            </tr>
+            <tr>
+                <th>Exchange</th>
+                <td>{{ description.exchange }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ description.name }}</td>
+            </tr>
+            <tr>
+                <th>Symbol</th>
+                <td>{{ description.symbol }}</td>
+            </tr>
+            <tr>
+                <th>ExchangeSymbol</th>
+                <td>{{ description.exchangeSymbol }}</td>
+            </tr>
+            <tr>
+                <th>Hq_address</th>
+                <td>{{ description.hqAddress }}</td>
+            </tr>
+            <tr>
+                <th>Hq_state</th>
+                <td>{{ description.hqState }}</td>
+            </tr>
+            <tr>
+                <th>Hq_country</th>
+                <td>{{ description.hqCountry }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ description.type }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ description.updated ? description.updated|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ description.tags }}</td>
+            </tr>
+            <tr>
+                <th>Similar</th>
+                <td>{{ description.similar }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ description.active ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

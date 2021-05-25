@@ -1,0 +1,7 @@
+{% block javascripts %}
+    {{ encore_entry_script_tags('paginator') }}
+{% endblock %}
+<nav aria-label="Page navigation example dark" id="pagination_nav" data-pages="{{pages}}" data-total="{{total}}" data-page="{{ page }}" data-path="{{path(index)}}" data-url="{{url(index)}}">
+    <ul class="pagination" id="pagination">
+    </ul>
+</nav>
