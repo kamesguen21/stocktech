@@ -40,6 +40,11 @@ Apache to run the application.
 
 Guide
 -----
+to install stock historical data run this command
+
+ ```bash
+  php bin/console import-data
+ ```
 when creating an account you need to configure mailer with your email to receive verification link.
 
 change email to your email
@@ -59,7 +64,7 @@ in
  ```bash
 .env
  ```
-
+Or use default user 'admin@admin.com' 'nimda19'
 
 [1]: https://symfony.com/doc/current/best_practices.html
 [2]: https://symfony.com/doc/current/reference/requirements.html
